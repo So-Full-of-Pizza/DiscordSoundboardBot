@@ -10,7 +10,7 @@
     "@azure/storage-blob": "^12.27.0",
     "botman-mongo": "*",
     "file-type": "^21.0.0",
-    "mongodb": "^6.16.0",
+    "mongodb": "^6.17.0",
     "sanitize-filename": "^1.6.3",
     "uuid": "^11.1.0"
   },

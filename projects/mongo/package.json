@@ -10,6 +10,6 @@
   },
   "dependencies": {
     "migrate-mongo": "^12.1.3",
-    "mongodb": "^6.16.0"
+    "mongodb": "^6.17.0"
   }
 }

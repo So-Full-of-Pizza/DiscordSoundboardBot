@@ -37,7 +37,7 @@
     "@types/cookie-parser": "^1.4.8",
     "@types/express": "^5.0.2",
     "@types/multer": "^1.4.12",
-    "@types/node": "^22.15.28",
+    "@types/node": "^24.0.6",
     "ts-node-dev": "^2.0.0"
   }
 }

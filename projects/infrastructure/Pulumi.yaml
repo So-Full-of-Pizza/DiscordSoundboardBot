@@ -1,0 +1,12 @@
+name: botman-ac
+description: Botman Azure Container App
+runtime:
+  name: nodejs
+  options:
+    packagemanager: yarn
+config:
+  azure-native:location: WestEurope
+  azure-native:subscriptionId: f593c42d-4ffc-4969-bf17-7e2a10fcba29
+  pulumi:tags:
+    value:
+      pulumi:template: container-azure-typescript

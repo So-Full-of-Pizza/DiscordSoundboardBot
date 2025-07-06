@@ -28,8 +28,8 @@ if (
   && isEnvironmentVariableValid(process.env.BLOB_STORAGE_CONNECTION_STRING, 'BLOB_STORAGE_CONNECTION_STRING')
   && isEnvironmentVariableValid(process.env.CLIENT_ID, 'CLIENT_ID')
   && isEnvironmentVariableValid(process.env.CLIENT_SECRET, 'CLIENT_SECRET')
-  && isEnvironmentVariableValid(process.env.WEB_SERVER_URL, 'WEB_SERVER_URL')
-  && isEnvironmentVariableValid(process.env.FRONTEND_SOUNDS_BASE_URL, 'FRONTEND_SOUNDS_BASE_URL')
+  && isEnvironmentVariableValid(process.env.APP_URL, 'WEB_SERVER_URL')
+  && (process.env.NODE_ENV === 'production' || isEnvironmentVariableValid(process.env.DEV_FRONTEND_SOUNDS_BASE_URL, 'DEV_FRONTEND_SOUNDS_BASE_URL'))
   && isEnvironmentVariableValid(process.env.PORT, 'PORT')
 ) {
   const environment: Environment = {
@@ -47,8 +47,8 @@ if (
     blobStorageConnectionString: environment.blobStorageConnectionString,
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    webServerUrl: process.env.WEB_SERVER_URL,
-    frontendSoundsBaseUrl: process.env.FRONTEND_SOUNDS_BASE_URL,
+    appURL: process.env.APP_URL,
+    soundsBaseUrl: process.env.DEV_FRONTEND_SOUNDS_BASE_URL || process.env.SOUNDS_BASE_URL,
     port: process.env.PORT,
   };
 

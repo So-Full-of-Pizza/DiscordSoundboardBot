@@ -38,7 +38,7 @@ export default class WebServer {
     this.favoritesService = new FavoritesService(environment.dbConnectionString);
     this.tagsService = new TagsService(environment.dbConnectionString);
 
-    this.authURL = `https://discord.com/api/oauth2/authorize?client_id=${ environment.clientID }&redirect_uri=${ encodeURI(environment.webServerUrl) }&response_type=code&scope=identify&prompt=none`;
+    this.authURL = `https://discord.com/api/oauth2/authorize?client_id=${ environment.clientID }&redirect_uri=${ encodeURI(environment.appURL) }&response_type=code&scope=identify&prompt=none`;
   }
 
   start() {
@@ -70,7 +70,7 @@ export default class WebServer {
       next();
     });
 
-    app.use('/api/sounds', soundsRouter(this.soundsService, this.favoritesService, this.tagsService, this.prefsService, this.environment.frontendSoundsBaseUrl));
+    app.use('/api/sounds', soundsRouter(this.soundsService, this.favoritesService, this.tagsService, this.prefsService, this.environment.soundsBaseUrl));
     app.use('/api/prefs', prefsRouter(this.prefsService));
     app.use('/api/favorites', favoritesRouter(this.favoritesService));
     app.use('/api/tags', tagsRouter(this.tagsService));

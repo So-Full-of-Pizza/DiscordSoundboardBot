@@ -1,0 +1,19 @@
+config:
+  azure-native:clientId: 8c6c9cfe-4f20-4052-b6f7-37651b86249d
+  azure-native:clientSecret:
+    secure: AAABAF2uotKgUDEWy96hRU6GN9GaVo8Y8SP1Xg6yl9eBYwGVZ4ok57PHn6N+H9KE0n9uKtGdvS856ahJvpkOFeSElefDuLsc
+  azure-native:location: WestEurope
+  azure-native:tenantId: 7add3b52-52cb-423b-95a6-067270fc7ff5
+  botman-ac:applicationInsightsConnectionString:
+    secure: AAABAOUdUcOnZdpYMZvGnzizwMLoyXpoZicDV6bLJXLW/pVtZgLSXujE1OMymgMNY5+fkr1256mF79y5smHTbr4yi8X89odOw9EJyAkvs0ztZ4VkYOZIwx9/pqKqbIgPZGsb8Afjtgdu40bCgdw//dkoZVVYDg1Ln5iQO7Z3rah0x0GVFeWaJVYRiBYmuh2x3f6WeeAlJtwWwqsD7TvkvZcgfr9D2SQDnOhjgB+K3ZvtCp41SoNQiMrngihFnGp0l8op+OMC59WLt0vojMdyfNPlv4hau/14JqfBaAc=
+  botman-ac:blobStorageConnectionString:
+    secure: AAABAGFTtmnGLUV7relL9pI6zXt4wDjgKyUrYd/8dnQSm8H42u65qOBjdm2VC16y43JgAtuGhKLp+WFzx4QwC8Q+nD6f0YgLapja0Blat6xj8WJwar9RlUeXAZFw3aLFsw3VPF3+YS9Wbl0u9AMw8gMjP331K+dm6I4nPbn95iaLAMoqpAP5azTI6/+hbO+OKlrmzZQZ67c9cO1jIL7EHjGkTGgEeikAjzj2sVvkNDbNrqJEKbrGX5vf/A0y/lyJROSjIvzFd201O9HrQ47zdSEwAS6MNQ==
+  botman-ac:botToken:
+    secure: AAABAAPeU2G08uG2y1XEddpY1PLWK/kFstj9aslakygS97XTciQoWwoaB246Y/FgEf1nqteVXGQcvYoUWPRS2vNQ6GspDWd6x+ympoLNJOhl7K1deMGaxUB4pg==
+  botman-ac:clientId: "536897126005997568"
+  botman-ac:clientSecret:
+    secure: AAABAARnpFc7+TIkMWl0Jq7sUcu0lM6L7M1LiiOpDfYHqIBXCyHy5n6YBIPwtgM4ByDJyPuPsNJ2yfIgrCRn1w==
+  botman-ac:homeGuildId: "535780262760546304"
+  botman-ac:soundsBaseUrl: https://botmanp.blob.core.windows.net/sounds
+  botman-ac:soundsConnectionString:
+    secure: AAABAIigDJo4PfjQ5iWwSXnMbh4zl/CQQD3wAIfOykhkJsGtiR18kmTvxspgMosqsWgGCWQmOV5tbRd4yw7/G+Jht7EqeUQdlgJZxrh0fM8KalREbE/Iqlo2Tu+1pZVMSeQqZ38sOcZKq1TWnXY4x269MvRGs116/LwzHC0=

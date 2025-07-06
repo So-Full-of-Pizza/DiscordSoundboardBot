@@ -1,19 +1,19 @@
 export default interface Environment {
-  environment: string;
-  botToken: string;
-  homeGuildId: string;
-  dbConnectionString: string;
-  soundsBaseUrl: string;
   blobStorageConnectionString: string;
+  botToken: string;
+  dbConnectionString: string;
+  environment: string;
+  homeGuildId: string;
+  soundsBaseUrl: string;
 }
 
 export interface WebServerEnvironment {
-  environment: string;
-  dbConnectionString: string
+  appURL: string;
   blobStorageConnectionString: string;
   clientID: string;
   clientSecret: string;
-  webServerUrl: string;
-  frontendSoundsBaseUrl: string;
+  dbConnectionString: string
+  environment: string;
+  soundsBaseUrl: string;
   port: string | number;
 }

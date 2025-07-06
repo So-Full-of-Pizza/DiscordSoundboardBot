@@ -24,7 +24,7 @@ export default function discordAuth(environment: WebServerEnvironment, prefsServ
       });
       if (req.query.code) {
         params.append('code', String(req.query.code));
-        params.append('redirect_uri', environment.webServerUrl);
+        params.append('redirect_uri', environment.appURL);
       } else { params.append('refresh_token', req.cookies.refreshtoken); }
       try {
         const tokenRes = await axios.post('https://discord.com/api/oauth2/token', params, { headers: { 'Accept-encoding': 'application/json' } });

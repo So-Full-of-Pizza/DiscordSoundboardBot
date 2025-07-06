@@ -34,14 +34,15 @@ jobs:
     needs: migrate-database
     runs-on: ubuntu-latest
     steps:
-      - name: Login to DockerHub
-        uses: docker/login-action@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: yarn --pure-lockfile
+      - name: Deploy Bot
+        uses: pulumi/actions@v6
         with:
-          username: uncledave
-          password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
-      - name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          push: true
-          tags: uncledave/botman:latest
-          file: projects/bot/Dockerfile
+          command: up
+          stack-name: stuckinab0x/dev
+          work-dir: projects/infrastructure
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}

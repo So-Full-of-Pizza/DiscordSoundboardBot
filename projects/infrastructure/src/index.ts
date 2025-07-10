@@ -1,6 +1,6 @@
 import * as dockerbuild from '@pulumi/docker-build';
 import * as pulumi from '@pulumi/pulumi';
-import { app, containerregistry, operationalinsights, resources } from '@pulumi/azure-native';
+import {app, containerregistry, operationalinsights, resources} from '@pulumi/azure-native';
 import envArgs from './bot-env';
 
 const appName = 'botman-ac';
@@ -42,7 +42,8 @@ const credentials = containerregistry.listRegistryCredentialsOutput({
 const adminUsername = credentials.apply((c: containerregistry.ListRegistryCredentialsResult) => c.username!);
 const adminPassword = credentials.apply((c: containerregistry.ListRegistryCredentialsResult) => c.passwords![0].value!);
 
-const appUrl = pulumi.runtime.isDryRun() ? 'https://preview-bot.totally-legit-azure.com' : 'https://soundboard.sofullofpizza.com';
+const domainName = 'soundboard.sofullofpizza.com';
+const appUrl = pulumi.runtime.isDryRun() ? 'https://preview-bot.totally-legit-azure.com' : `https://${domainName}`;
 
 const image = new dockerbuild.Image(appName, {
   tags: [pulumi.interpolate`${ registry.loginServer }/${ appName }`],
@@ -65,6 +66,14 @@ new app.ContainerApp(appName, {
     ingress: {
       external: true,
       targetPort: 80,
+      customDomains: [{
+        name: domainName,
+        certificateId: app.getManagedCertificateOutput({
+          resourceGroupName: resourceGroup.name,
+          environmentName: managedEnv.name,
+          managedCertificateName: 'soundboard.sofullofpizza.com-env98656-250710220841',
+        }).apply(x => x.id),
+      }],
     },
     registries: [{
       server: registry.loginServer,

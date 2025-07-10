@@ -42,7 +42,7 @@ const credentials = containerregistry.listRegistryCredentialsOutput({
 const adminUsername = credentials.apply((c: containerregistry.ListRegistryCredentialsResult) => c.username!);
 const adminPassword = credentials.apply((c: containerregistry.ListRegistryCredentialsResult) => c.passwords![0].value!);
 
-const appUrl = pulumi.runtime.isDryRun() ? 'https://preview-bot.totally-legit-azure.com' : pulumi.interpolate`https://${ appName }.${ managedEnv.defaultDomain }`;
+const appUrl = pulumi.runtime.isDryRun() ? 'https://preview-bot.totally-legit-azure.com' : 'https://soundboard.sofullofpizza.com';
 
 const image = new dockerbuild.Image(appName, {
   tags: [pulumi.interpolate`${ registry.loginServer }/${ appName }`],

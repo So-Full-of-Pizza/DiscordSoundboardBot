@@ -28,7 +28,7 @@ if (
   && isEnvironmentVariableValid(process.env.BLOB_STORAGE_CONNECTION_STRING, 'BLOB_STORAGE_CONNECTION_STRING')
   && isEnvironmentVariableValid(process.env.CLIENT_ID, 'CLIENT_ID')
   && isEnvironmentVariableValid(process.env.CLIENT_SECRET, 'CLIENT_SECRET')
-  && isEnvironmentVariableValid(process.env.APP_URL, 'WEB_SERVER_URL')
+  && isEnvironmentVariableValid(process.env.APP_URL, 'APP_URL')
   && (process.env.NODE_ENV === 'production' || isEnvironmentVariableValid(process.env.DEV_FRONTEND_SOUNDS_BASE_URL, 'DEV_FRONTEND_SOUNDS_BASE_URL'))
   && isEnvironmentVariableValid(process.env.PORT, 'PORT')
 ) {

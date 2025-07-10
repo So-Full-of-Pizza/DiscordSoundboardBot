@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import styled, { css, useTheme } from 'styled-components';
 import * as mixins from '../styles/mixins';
 import Sound from '../models/sound';
@@ -13,9 +13,9 @@ const soundTileSmall = css`
   margin: 4px 4px;
 `;
 
-type Status = 'pending' | 'success' | 'error' | 'idle';
+type Status = 'pending' | 'success' | 'error' | 'tagging' | 'idle';
 
-const getPlaybackResultStyle = (status: Status) => {
+const getBackgroundStyle = (status: Status) => {
   if (status === 'success') return css`
     background-color: ${ props => props.theme.colors.borderGreen };
 
@@ -29,6 +29,7 @@ const getPlaybackResultStyle = (status: Status) => {
   if (status === 'error') return css`
     background-color: ${ props => props.theme.colors.borderRed };
   `;
+  if (status === 'tagging') return null;
   return css`
     transition-property: background-color;
     transition-duration: 1s;
@@ -81,7 +82,7 @@ const SoundTileMain = styled.div<SoundTileMainProps>`
       overflow: hidden;
     }
 
-    ${ props => props.$disableBorder ? null : getPlaybackResultStyle(props.$status) }
+    ${ props => props.$disableBorder ? null : getBackgroundStyle(props.$status) }
   }
 
   @media only screen and (max-width: ${ props => props.theme.params.widthSelector3 }px) {
@@ -286,6 +287,12 @@ const SoundTile: FC<SoundTileProps> = ({
     if (currentlyTagging) return toggleSoundOnTag(id);
     return handleSoundPlayClick();
   }, [currentlyTagging, unsavedTagged, handleSoundPlayClick]);
+
+  useEffect(() => {
+    if (currentlyTagging)
+      return setStatus('tagging');
+    return setStatus('idle');
+  }, [currentlyTagging]);
 
   const isFavIcon = themeName === 'Halloween' ? '💀' : 'star';
   const isNotFavIcon = themeName === 'Halloween' ? '💀' : 'star_outline';

@@ -1,7 +1,7 @@
 import { Image } from '@pulumi/docker-build';
-import { interpolate } from '@pulumi/pulumi';
-import { app, containerregistry, operationalinsights, resources } from '@pulumi/azure-native';
-import envArgs from './bot-env';
+import { Config, interpolate } from '@pulumi/pulumi';
+import { app, operationalinsights, resources } from '@pulumi/azure-native';
+import getBotEnv from './bot-env';
 
 const appName = 'botman-ac';
 
@@ -29,32 +29,25 @@ const managedEnv = new app.ManagedEnvironment('env', {
   },
 });
 
-const registry = new containerregistry.Registry('registry', {
-  resourceGroupName: resourceGroup.name,
-  sku: { name: 'Basic' },
-  adminUserEnabled: true,
-});
-
-const credentials = containerregistry.listRegistryCredentialsOutput({
-  resourceGroupName: resourceGroup.name,
-  registryName: registry.name,
-});
-const adminUsername = credentials.apply((c: containerregistry.ListRegistryCredentialsResult) => c.username!);
-const adminPassword = credentials.apply((c: containerregistry.ListRegistryCredentialsResult) => c.passwords![0].value!);
-
 const domainName = 'soundboard.sofullofpizza.com';
 const appUrl = `https://${ domainName }`;
 
+const config = new Config();
+
+const registryLoginServer = 'docker.io';
+const registryUsername = config.get('dockerHubUsername');
+const registryPassword = config.get('dockerHubPassword');
+
 const image = new Image(appName, {
-  tags: [interpolate`${ registry.loginServer }/${ appName }`],
+  tags: [interpolate`${ registryUsername }/${ appName }:latest`],
   dockerfile: { location: '../bot/Dockerfile' },
   context: { location: '../..' },
   platforms: ['linux/amd64'],
   push: true,
   registries: [{
-    address: registry.loginServer,
-    username: adminUsername,
-    password: adminPassword,
+    address: registryLoginServer,
+    username: registryUsername,
+    password: registryPassword,
   }],
 });
 
@@ -76,13 +69,13 @@ new app.ContainerApp(appName, {
       }],
     },
     registries: [{
-      server: registry.loginServer,
-      username: adminUsername,
+      server: registryLoginServer,
+      username: registryUsername,
       passwordSecretRef: 'pwd',
     }],
     secrets: [{
       name: 'pwd',
-      value: adminPassword,
+      value: registryPassword,
     }],
   },
   template: {
@@ -90,7 +83,7 @@ new app.ContainerApp(appName, {
       name: appName,
       image: image.ref,
       env: [
-        ...envArgs,
+        ...getBotEnv(config),
         {
           name: 'APP_URL',
           value: appUrl,

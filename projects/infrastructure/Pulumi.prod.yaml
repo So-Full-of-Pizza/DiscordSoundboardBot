@@ -15,3 +15,6 @@ config:
   botman-ac:soundsBaseUrl: https://botmanp.blob.core.windows.net/sounds
   botman-ac:soundsConnectionString:
     secure: AAABAIigDJo4PfjQ5iWwSXnMbh4zl/CQQD3wAIfOykhkJsGtiR18kmTvxspgMosqsWgGCWQmOV5tbRd4yw7/G+Jht7EqeUQdlgJZxrh0fM8KalREbE/Iqlo2Tu+1pZVMSeQqZ38sOcZKq1TWnXY4x269MvRGs116/LwzHC0=
+  botman-ac:dockerHubUsername: stuckinabox
+  botman-ac:dockerHubPassword:
+    secure: AAABAEpgWLDiwkQDfBl3ZuZ47v+x2IyXTlhxK1nciSV6uGvenbCkxu4Kjy3BzHK3XO62St2Zfpeknpbgkm6hIRRBErA=

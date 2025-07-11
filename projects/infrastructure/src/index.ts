@@ -1,6 +1,6 @@
-import * as dockerbuild from '@pulumi/docker-build';
-import * as pulumi from '@pulumi/pulumi';
-import {app, containerregistry, operationalinsights, resources} from '@pulumi/azure-native';
+import { Image } from '@pulumi/docker-build';
+import { interpolate } from '@pulumi/pulumi';
+import { app, containerregistry, operationalinsights, resources } from '@pulumi/azure-native';
 import envArgs from './bot-env';
 
 const appName = 'botman-ac';
@@ -43,10 +43,10 @@ const adminUsername = credentials.apply((c: containerregistry.ListRegistryCreden
 const adminPassword = credentials.apply((c: containerregistry.ListRegistryCredentialsResult) => c.passwords![0].value!);
 
 const domainName = 'soundboard.sofullofpizza.com';
-const appUrl = pulumi.runtime.isDryRun() ? 'https://preview-bot.totally-legit-azure.com' : `https://${domainName}`;
+const appUrl = `https://${ domainName }`;
 
-const image = new dockerbuild.Image(appName, {
-  tags: [pulumi.interpolate`${ registry.loginServer }/${ appName }`],
+const image = new Image(appName, {
+  tags: [interpolate`${ registry.loginServer }/${ appName }`],
   dockerfile: { location: '../bot/Dockerfile' },
   context: { location: '../..' },
   platforms: ['linux/amd64'],

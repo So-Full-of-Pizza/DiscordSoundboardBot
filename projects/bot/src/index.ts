@@ -1,4 +1,3 @@
-import * as applicationInsights from 'applicationinsights';
 import Bot from './bot/bot';
 import WebServer from './web/web-server';
 import logger from './logger';
@@ -13,12 +12,6 @@ function isEnvironmentVariableValid<T>(value: T | undefined, name: string): valu
 }
 
 process.env.TZ = 'Europe/Copenhagen';
-
-if (process.env.NODE_ENV === 'production') {
-  applicationInsights.setup();
-  applicationInsights.defaultClient.context.tags[applicationInsights.defaultClient.context.keys.cloudRole] = 'Bot';
-  applicationInsights.start();
-}
 
 if (
   isEnvironmentVariableValid(process.env.BOT_TOKEN, 'BOT_TOKEN')

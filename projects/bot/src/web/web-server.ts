@@ -1,4 +1,3 @@
-import * as applicationInsights from 'applicationinsights';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import { SoundsService } from 'botman-sounds';
@@ -25,12 +24,6 @@ export default class WebServer {
   private readonly bot: Bot;
 
   constructor(private readonly environment: WebServerEnvironment, bot: Bot) {
-    if (environment.environment === 'production') {
-      applicationInsights.setup();
-      applicationInsights.defaultClient.context.tags[applicationInsights.defaultClient.context.keys.cloudRole] = 'Web backend';
-      applicationInsights.start();
-    }
-
     this.bot = bot;
 
     this.soundsService = new SoundsService(environment.dbConnectionString, environment.blobStorageConnectionString);

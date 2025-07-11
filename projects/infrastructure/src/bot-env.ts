@@ -2,7 +2,6 @@ import { Config } from '@pulumi/pulumi';
 
 const config = new Config();
 
-const applicationInsightsConnectionString = config.getSecret('applicationInsightsConnectionString');
 const blobStorageConnectionString = config.getSecret('blobStorageConnectionString');
 const botToken = config.getSecret('botToken');
 const clientId = config.getSecret('clientId');
@@ -12,10 +11,6 @@ const soundsBaseUrl = config.get('soundsBaseUrl');
 const soundsConnectionString = config.getSecret('soundsConnectionString');
 
 const botEnv = [
-  {
-    name: 'APPLICATIONINSIGHTS_CONNECTION_STRING',
-    value: applicationInsightsConnectionString,
-  },
   {
     name: 'BLOB_STORAGE_CONNECTION_STRING',
     value: blobStorageConnectionString,

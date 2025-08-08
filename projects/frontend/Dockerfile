@@ -1,4 +1,4 @@
-﻿FROM alpine:3.19
+﻿FROM alpine:3.22
 EXPOSE 3000
 RUN apk add yarn
 WORKDIR /app

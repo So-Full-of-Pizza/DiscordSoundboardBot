@@ -1,4 +1,4 @@
-﻿FROM alpine:3.19 AS builder
+﻿FROM alpine:3.22 AS builder
 ARG NODE_ENV=production
 ENV NODE_ENV=$NODE_ENV
 RUN apk add git yarn python3 make gcc g++ musl-dev
@@ -24,7 +24,7 @@ COPY projects/frontend/public/ public/
 RUN yarn --pure-lockfile
 RUN if [ "$NODE_ENV" = "production" ] ; then set -e; yarn run build ; mv dist ../bot/src/web/public ; rm -rf ../frontend ; fi
 
-FROM alpine:3.19
+FROM alpine:3.22
 ARG NODE_ENV=production
 ENV NODE_ENV=$NODE_ENV
 EXPOSE 80

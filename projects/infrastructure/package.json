@@ -4,7 +4,7 @@
     "main": "src/index.ts",
     "private": true,
     "dependencies": {
-        "@pulumi/azure-native": "^3.5.1",
+        "@pulumi/azure-native": "^3.7.1",
         "@pulumi/docker-build": "^0.0.12",
         "@pulumi/pulumi": "^3.188.0"
     }
